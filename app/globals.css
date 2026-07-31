@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --aion-navy: #231a45;
+    --aion-purple: #5624d0;
+    --aion-lilac: #eee9f9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-lilac-soft text-navy antialiased;
+  }
+
+  /* Shell-wide visible focus. Assessment cases opt out locally where the
+     curriculum asks for a planted barrier — never globally. */
+  :focus-visible {
+    outline: 3px solid var(--aion-purple);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .aion-card {
+    @apply rounded-xl border border-lilac-edge bg-white shadow-card;
+  }
+
+  .aion-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+           text-sm font-semibold transition-colors;
+  }
+
+  .aion-btn-primary {
+    @apply aion-btn bg-purple text-white hover:bg-purple-deep;
+  }
+
+  .aion-btn-ghost {
+    @apply aion-btn border border-lilac-edge bg-white text-navy hover:bg-lilac;
+  }
+
+  .aion-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1
+           text-xs font-semibold transition-colors;
+  }
+
+  /* Utility for the deliberately-hidden skip link pattern used in Learn demos */
+  .skip-link {
+    @apply absolute left-3 -top-16 z-50 rounded-lg bg-purple px-4 py-2
+           text-sm font-semibold text-white focus:top-3;
+  }
+}
