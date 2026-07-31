@@ -82,10 +82,18 @@ npm run typecheck
 
 ## Deploying
 
-The build is a static export (`output: 'export'`), so it deploys anywhere.
+The build is a static export (`output: 'export'`), so it deploys anywhere. The
+build command is always `npm run build` and the output directory is always
+`out/` — there is no `public/` directory and no server runtime.
 
-- **Netlify** — `netlify.toml` is included: build `npm run build`, publish `out`.
-- **Vercel** — import the repo; the defaults work as-is.
+- **Netlify** — `netlify.toml`: build `npm run build`, publish `out`.
+- **Vercel** — `vercel.json` pins the same thing. It declares no framework
+  preset on purpose, so the deploy is a plain static upload of `out/` and
+  behaves identically to Netlify. Without it, a project whose framework preset
+  is "Other" looks for `public/` and fails with *"No Output Directory named
+  public found"*. If you'd rather use Vercel's Next.js preset instead, delete
+  `vercel.json` and set the framework to Next.js in Project Settings — the
+  Next builder understands `output: 'export'` on its own.
 - **Anything else** — serve the `out/` directory.
 
 ## Project layout
